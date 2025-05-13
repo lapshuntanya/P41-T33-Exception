@@ -25,6 +25,7 @@ float SecondsTariff::getPrice() const
 
 float SecondsTariff::calcCost(int seconds) const
 {
+    if (seconds < 0) throw new SecondsException("Довжина дзвінка не може бути від'ємним числом", seconds);
     return price * seconds;
 }
 

@@ -23,7 +23,8 @@ float MinutesTariff::getPrice() const
 
 float MinutesTariff::calcCost(int seconds) const
 {
-    return (seconds /60)*price;
+    if (seconds < 0) throw new SecondsException("Довжина дзвінка не може бути від'ємним числом", seconds);
+    return (seconds / 60.0)*price;
 }
 
 void MinutesTariff::show() const

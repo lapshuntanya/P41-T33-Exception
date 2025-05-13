@@ -25,7 +25,15 @@ int main() {
 	try { Lifecell.addTariff(new SecondsTariff("Night", 0.01)); }
 	catch (const MobileException* obj) { cout << obj->showMessage() << endl;	delete obj; }
 
-
+	cout << "=============================================\n";
 	Lifecell.showList();
+	cout << "=============================================\n";
 
+	Tariff* ptr2 = new SecondsTariff("Free", 0.01);
+
+	try { cout << "Summary: " << ptr2->calcCost(20) << "UAH per 20 seconds." << endl; }
+	catch (const MobileException* obj) { cout << obj->showMessage() << endl;	delete obj; }
+
+	try { cout << "Summary: " << ptr2->calcCost(-20) << "UAH per 20 seconds." << endl; }
+	catch (const MobileException* obj) { cout << obj->showMessage() << endl;	delete obj; }
 }
