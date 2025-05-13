@@ -7,11 +7,12 @@ MinutesTariff::MinutesTariff()
 
 MinutesTariff::MinutesTariff(std::string name, float price):Tariff(name)
 {
-    this->price = price;
+    setPrice(price);
 }
 
 void MinutesTariff::setPrice(float price)
 {
+    if (price <= 0) throw new PriceException("Ціна не може бути від'ємною.", price);
     this->price = price;
 }
 
