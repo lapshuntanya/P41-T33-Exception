@@ -23,6 +23,29 @@ public:
 		this->name = name;
 	}
 	string showMessage()const {
-		return "NameException ( " + name + ") " + text;
+		return "NameException ( " + name + "): " + text  + "!!!";
+	}
+};
+//===========================================================
+
+class PriceException : public MobileException {
+	float price;
+public:
+	PriceException(string text, float price) :MobileException(text) {
+		this->price = price;
+	}
+	string showMessage()const {
+		return "PriceException ( " + std::to_string(price) + "): " + text + "!!!";
+	}
+};
+//===========================================================
+class SecondsException : public MobileException {
+	int seconds;
+public:
+	SecondsException(string text, int seconds) :MobileException(text) {
+		this->seconds = seconds;
+	}
+	string showMessage()const {
+		return "SecondsException ( " + std::to_string(seconds) + "): " + text + "!!!";
 	}
 };
