@@ -4,10 +4,26 @@ int main() {
 
 	MobileProvider Lifecell("Lifecell");
 
-	Lifecell.addTariff(new MinutesTariff("Student", 0.1));
-	Lifecell.addTariff(new MinutesTariff("Teacher", 0.2));
-	Lifecell.addTariff(new SecondsTariff("Day", 0.05));
-	Lifecell.addTariff(new SecondsTariff("Night", 0.01));
+	Tariff* ptr = nullptr;
+	try {
+		ptr = new MinutesTariff("XXX", 0.1);
+		Lifecell.addTariff(ptr);
+	}
+	catch (const MobileException * obj) {
+		cout << obj->showMessage() << endl;
+		delete obj;
+	}
+	cout << ptr << endl;
+	//------------------------------------------------------
+
+	try {		Lifecell.addTariff(new MinutesTariff(" ", 0.2));	}	
+	catch (const MobileException* obj) {cout << obj->showMessage() << endl;	delete obj;	}
+
+	try { Lifecell.addTariff(new SecondsTariff("Day", -0.05)); }
+	catch (const MobileException* obj) { cout << obj->showMessage() << endl;	delete obj; }
+
+	try { Lifecell.addTariff(new SecondsTariff("Night", 0.01)); }
+	catch (const MobileException* obj) { cout << obj->showMessage() << endl;	delete obj; }
 
 
 	Lifecell.showList();
